@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title} +' '+ Post"></title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{/css/templatemo-xtra-blog.css}" rel="stylesheet">
+    <!--
+
+    TemplateMo 553 Xtra Blog
+
+    https://templatemo.com/tm-553-xtra-blog
+
+    -->
+</head>
+<body>
+<header class="tm-header" id="tm-header" th:fragment="header">
+    <div class="tm-header-wrapper">
+        <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="tm-site-header">
+            <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>
+            <h1 class="text-center">Andres's Blog</h1>
+        </div>
+        <nav class="tm-nav" id="tm-nav">
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <input type="submit" value="Logout" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;"/>
+            </form>
+            <ul>
+                <li class="tm-nav-item active"><a href="/home" class="tm-nav-link">
+                    <i class="fas fa-home"></i>
+                    Blog Home
+                </a></li>
+                <li class="tm-nav-item" th:if="${isAdmin}" ><a href="/new" class="tm-nav-link">
+                    <i class="fas fa-pen"></i>
+                    Single Post
+                </a></li>
+                <li class="tm-nav-item"><a href="/about" class="tm-nav-link">
+                    <i class="fas fa-users"></i>
+                    About Andres
+                </a></li>
+                <li class="tm-nav-item"><a href="/contact" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Contact Us
+                </a></li>
+            </ul>
+        </nav>
+        <div class="tm-mb-65">
+            <a rel="nofollow" href="https://www.facebook.com/Andres.Aviles07/" class="tm-social-link" target="_blank">
+                <i class="fab fa-facebook tm-social-icon"></i>
+            </a>
+            <a href="https://www.instagram.com/andres_avi07/" class="tm-social-link" target="_blank">
+                <i class="fab fa-instagram tm-social-icon"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/andresavilesdev/" class="tm-social-link" target="_blank">
+                <i class="fab fa-linkedin tm-social-icon"></i>
+            </a>
+        </div>
+        <p class="tm-mb-80 pr-5 text-white">
+            Andres's Blog is a website. When you can know a little bit about me.
+        </p>
+    </div>
+</header>
+<div class="container-fluid">
+    <main class="tm-main">
+        <div th:replace="~{layouts/searchForm}"></div>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h1 class="card-title text-primary mb-3" th:text="${title}"></h1>
+                            <h6 class="card-subtitle text-muted mb-4" th:text="${date}"></h6>
+                            <p class="card-text" th:text="${content}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row tm-row tm-mt-100 tm-mb-75">
+            <div class="tm-prev-next-wrapper">
+                <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
+                <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+            </div>
+            <div class="tm-paging-wrapper">
+                <span class="d-inline-block mr-3">Page</span>
+                <nav class="tm-paging-nav d-inline-block">
+                    <ul>
+                        <li class="tm-paging-item active">
+                            <a href="#" class="mb-2 tm-btn tm-paging-link">1</a>
+                        </li>
+                        <li class="tm-paging-item">
+                            <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>
+                        </li>
+                        <li class="tm-paging-item">
+                            <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>
+                        </li>
+                        <li class="tm-paging-item">
+                            <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <footer th:replace="~{layouts/footer}"></footer>
+    </main>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/templatemo-script.js"></script>
+</body>
+</html>

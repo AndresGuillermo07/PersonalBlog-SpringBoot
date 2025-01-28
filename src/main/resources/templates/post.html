@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Andres's Blog</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{/css/templatemo-xtra-blog.css}" rel="stylesheet">
+<!--
+    
+TemplateMo 553 Xtra Blog
+
+https://templatemo.com/tm-553-xtra-blog
+
+-->
+</head>
+<body>
+<header class="tm-header" id="tm-header" th:fragment="header">
+    <div class="tm-header-wrapper">
+        <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="tm-site-header">
+            <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>
+            <h1 class="text-center">Andres's Blog</h1>
+        </div>
+        <nav class="tm-nav" id="tm-nav">
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <input type="submit" value="Logout" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;"/>
+            </form>
+            <ul>
+                <li class="tm-nav-item active"><a href="/home" class="tm-nav-link">
+                    <i class="fas fa-home"></i>
+                    Blog Home
+                </a></li>
+                <li class="tm-nav-item" th:if="${isAdmin}" ><a href="/new" class="tm-nav-link">
+                    <i class="fas fa-pen"></i>
+                    Single Post
+                </a></li>
+                <li class="tm-nav-item"><a href="/about" class="tm-nav-link">
+                    <i class="fas fa-users"></i>
+                    About Andres
+                </a></li>
+                <li class="tm-nav-item"><a href="/contact" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Contact Us
+                </a></li>
+            </ul>
+        </nav>
+        <div class="tm-mb-65">
+            <a rel="nofollow" href="https://www.facebook.com/Andres.Aviles07/" class="tm-social-link" target="_blank">
+                <i class="fab fa-facebook tm-social-icon"></i>
+            </a>
+            <a href="https://www.instagram.com/andres_avi07/" class="tm-social-link" target="_blank">
+                <i class="fab fa-instagram tm-social-icon"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/andresavilesdev/" class="tm-social-link" target="_blank">
+                <i class="fab fa-linkedin tm-social-icon"></i>
+            </a>
+        </div>
+        <p class="tm-mb-80 pr-5 text-white">
+            Andres's Blog is a website. When you can know a little bit about me.
+        </p>
+    </div>
+</header>
+    <div class="container-fluid">
+        <main class="tm-main">
+            <!-- Search form -->
+            <div class="row tm-row" th:replace="~{layouts/searchForm}"></div>
+            <div class="container my-5">
+                <h1>New Article</h1>
+                <form th:object="${post}" method="post" th:action="@{/new}">
+                    <div class="mb-3">
+                        <label for="article-title" class="form-label">Article Title</label>
+                        <input type="text" required th:field="${post.title}" class="form-control" id="article-title" placeholder="Enter article title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="publish-date" class="form-label">Publishing Date</label>
+                        <input type="text" th:field="${post.date}" class="form-control" readonly id="publish-date" th:placeholder="${date}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="article-content" class="form-label">Content</label>
+                        <textarea th:field="${post.content}" required class="form-control" id="article-content" rows="10" placeholder="Enter article content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Publish</button>
+                </form>
+            </div>
+            <footer th:replace="~{layouts/footer}"></footer>
+        </main>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+</body>
+</html>
